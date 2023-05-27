@@ -2,6 +2,9 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from 'path';
 import { createHtmlPlugin } from 'vite-plugin-html';
+import Components from 'unplugin-vue-components/vite';
+import { VantResolver } from 'unplugin-vue-components/resolvers';
+import AutoImport from 'unplugin-auto-import/vite';
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
@@ -24,7 +27,20 @@ export default defineConfig({
       },
     },
   },
-  plugins: [vue(), createHtmlPlugin()],
+  plugins: [
+    vue(),
+    createHtmlPlugin(),
+    Components({
+      resolvers: [VantResolver()],
+    }),
+    AutoImport({
+      imports: ['vue', 'vue-router'],
+      dts: 'src/auto-import.d.ts',
+      eslintrc: {
+        enabled: true,
+      },
+    }),
+  ],
   build: {
     minify: 'terser',
     terserOptions: {

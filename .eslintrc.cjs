@@ -10,6 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'prettier',
+    './.eslintrc-auto-import.json',
   ],
   overrides: [],
   parser: 'vue-eslint-parser',
@@ -22,5 +23,6 @@ module.exports = {
   rules: {
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-explicit-any': ['off'],
   },
 };
